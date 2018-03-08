@@ -1,9 +1,13 @@
 ---
 title: 'Activity: Steps'
 output:
+  md_document: default
+  html_document: default
   word_document: default
   pdf_document: default
-  html_document: default
+  
+  
+  
 ---
 
 ###Set up Global Environment
@@ -43,8 +47,8 @@ hist(steps.day$steps, breaks = 60, xlab = "Steps per day", ylab = "Frequency", m
 abline(v=mean_val, lwd = 3, col = 'blue')
 abline(v=median_val, lwd = 3, col = 'red')
 legend('topright', lty = 1, lwd = 3, col = c("blue", "red"), cex = .8, legend = c(paste('Mean: ', round(mean_val)), paste('Median:', median_val)))
-dev.copy(png, filename = "StepsPerDay.png", width = 480, height = 480, units = "px")
-dev.off()
+##dev.copy(png, filename = "StepsPerDay.png", width = 480, height = 480, units = "px")
+##dev.off()
 
 ```
 ####Plotting a barplot to display Number of steps taken each day
@@ -52,8 +56,8 @@ dev.off()
 ##library(dplyr)
 steps.day %>% summarise(mean(steps), median(steps))
 plot<-barplot(height = steps.day$steps, names.arg = steps.day$date,  xlab = "Date", ylab = "Steps per day", col = "yellow", main = "Number of Steps per day")
-dev.copy(png, filename = "StepsPerDay_1.png", width = 480, height = 480, units = "px")
-dev.off()
+##dev.copy(png, filename = "StepsPerDay_1.png", width = 480, height = 480, units = "px")
+##dev.off()
 
 ```
 
@@ -66,8 +70,8 @@ steps.int<-aggregate(steps ~ interval, activity, mean)
  plot( steps.int$interval, steps.int$steps, type = "l", xlab = "5 minutes interval of the day", ylab = "No of steps")
  abline(v=steps.int[which.max(steps.int$steps),1], lwd = 3, col = 'blue')
  legend('topright', lty = 1, lwd = 3, col = c("blue", "red"), cex = .8, legend = c(paste('Max steps: ', round(steps.int[which.max(steps.int$steps), 2]))))
- dev.copy(png, filename = "AverageStepsPerInverval.png", width = 480, height = 480, units = "px")
-dev.off()
+## dev.copy(png, filename = "AverageStepsPerInverval.png", width = 480, height = 480, units = "px")
+##dev.off()
  print("Interval with maximum number of steps:  ")
  print(steps.int[which.max(steps.int$steps), ])
 
@@ -119,8 +123,8 @@ hist(steps.na$steps, breaks = 60, xlab = "Steps per day", ylab = "Frequency", ma
 abline(v=mean_valna, lwd = 3, col = 'blue')
 abline(v=median_valna, lwd = 3, col = 'red')
 legend('topright', lty = 1, lwd = 3, col = c("blue", "red"), cex = .8, legend = c(paste('Mean: ', round(mean_valna)), paste('Median:', median_valna)))
-dev.copy(png, filename = "CompareAverageStepsPerInverval.png", width = 480, height = 480, units = "px")
-dev.off()
+##dev.copy(png, filename = "CompareAverageStepsPerInverval.png", width = 480, height = 480, units = "px")
+##dev.off()
 
 ```
 ###Findings of comparing between 'Before Replacing NA' and 'after Replacing NAs'
@@ -140,8 +144,8 @@ active$day<-replace(active$day, active$day %in% c("Monday", "Tuesday", "Wednesda
 active$day<-replace(active$day, active$day %in% c("Saturday", "Sunday"), "Weekend")
 active.wkday<- aggregate(steps ~ interval + day, active, mean)
 xyplot(steps ~ interval | day, active.wkday, type = "l", layout = c(1, 2), xlab = "Interval", ylab = "Number of steps")
-dev.copy(png, filename = "AverageStepsPerInverval_Weekday_vs_weekend.png", width = 480, height = 480, units = "px")
-dev.off()
+##dev.copy(png, filename = "AverageStepsPerInverval_Weekday_vs_weekend.png", width = 480, height = 480, units = "px")
+##dev.off()
 
 ```
 ###Findings of comparing Weekday vs WeekEnd activity:
